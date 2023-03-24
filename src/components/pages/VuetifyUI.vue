@@ -38,8 +38,10 @@
 
 <script>
 export default {
-  name: 'VPreview',
-  
+  name: 'VuetifyUI',
+  mounted() {
+    console.log("==> id title: ", this.$route.params.id, this.$route.params.title);
+  },
 }
 </script>
 

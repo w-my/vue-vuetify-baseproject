@@ -1,41 +1,156 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img alt="Vuetify Logo" class="shrink mr-2" contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png" transition="scale-transition" width="40" />
-
-        <!-- <v-img alt="Vuetify Name" class="shrink mt-1 hidden-sm-and-down" contain min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png" width="100" /> -->
-      </div>
-
+    <v-app-bar app clipped-left dark color="bc-primary">
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>Topics</v-toolbar-title>
       <v-spacer></v-spacer>
-
-      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+      <v-btn icon href="https://vuetify.cn/zh-Hans/components/application/" target="_blank">
+        <v-icon large>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
 
+    <v-navigation-drawer app clipped dark v-model="drawer" color="#000000dd">
+      <!-- <v-list nav dense>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+            <img src="https://randomuser.me/api/portraits/men/81.jpg">
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Application</v-list-item-title>
+            <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list-item v-for="item in items" :key="item.title" link :to="item.target">
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list> -->
+
+      <!-- <v-list nav dense>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+            <img src="https://randomuser.me/api/portraits/men/81.jpg">
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Application</v-list-item-title>
+            <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list-group color="red" v-for="item in items" :key="item.title" v-model="item.active" no-action :to="item.path">
+          <template v-slot:activator>
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item v-for="subItem in item.items" :key="subItem.title" :to="item.path + subItem.path">
+            <v-list-item-content>
+              <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
+      </v-list> -->
+
+      <v-list nav dense>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+            <img src="https://randomuser.me/api/portraits/men/81.jpg">
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Application</v-list-item-title>
+            <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <div v-for="item in items" :key="item.title">
+          <template v-if="item.items">
+            <v-list-group color="#80CBC4" v-model="item.active" no-action>
+              <template v-slot:activator>
+                <v-list-item-icon>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+              </template>
+
+              <v-list-item v-for="subItem in item.items" :key="subItem.title" :to="item.path + subItem.path">
+                <v-list-item-content>
+                  <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-group>
+          </template>
+          <template v-else>
+            <v-list-item color="#80CBC4" :to="item.path">
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
+        </div>
+      </v-list>
+
+    </v-navigation-drawer>
+
     <v-main class="main">
-      <VPreview />
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
     </v-main>
+
+    <v-footer app absolute inset>
+      <div class="mx-auto">&copy; {{ new Date().getFullYear() }}</div>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import VPreview from './components/VPreview';
-
 export default {
   name: 'App',
-
-  components: {
-    VPreview,
-  },
-
   data: () => ({
-    // 
+    items: [
+      {
+        title: 'Vuetify', icon: 'mdi-vuetify', path: '/vuetify', active: true, items: [
+          { title: 'Vuetify UI', path: "/ui" + `/${'012345'}/${'titleA'}` },
+          { title: 'Vuetify Style', path: '/style' },
+        ]
+      },
+      {
+        title: 'Dashboard', icon: 'mdi-view-dashboard', path: '/dashboard', items: [
+          { title: 'Vuetify UI', path: '/ui' },
+          { title: 'Vuetify Style', path: '/style' },
+        ]
+      },
+      { title: 'Photos', icon: 'mdi-image', path: '/photos' },
+      { title: 'About', icon: 'mdi-help-box', path: '/about' },
+    ],
+    drawer: true,
   }),
+  mounted() {
+
+  },
+  methods: {
+    
+  },
 };
 </script>
 
