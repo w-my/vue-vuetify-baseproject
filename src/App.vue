@@ -10,60 +10,6 @@
     </v-app-bar>
 
     <v-navigation-drawer app clipped dark v-model="drawer" color="#000000dd">
-      <!-- <v-list nav dense>
-        <v-list-item two-line>
-          <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/men/81.jpg">
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Application</v-list-item-title>
-            <v-list-item-subtitle>Subtext</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider></v-divider>
-
-        <v-list-item v-for="item in items" :key="item.title" link :to="item.target">
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list> -->
-
-      <!-- <v-list nav dense>
-        <v-list-item two-line>
-          <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/men/81.jpg">
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Application</v-list-item-title>
-            <v-list-item-subtitle>Subtext</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider></v-divider>
-
-        <v-list-group color="red" v-for="item in items" :key="item.title" v-model="item.active" no-action :to="item.path">
-          <template v-slot:activator>
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <v-list-item v-for="subItem in item.items" :key="subItem.title" :to="item.path + subItem.path">
-            <v-list-item-content>
-              <v-list-item-title>{{ subItem.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
-      </v-list> -->
-
       <v-list nav dense>
         <v-list-item two-line>
           <v-list-item-avatar>
