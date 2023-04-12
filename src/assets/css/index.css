@@ -1,0 +1,61 @@
+:root {
+  --wm-color-primary: #151F6D;
+  /* --wm-color-primary: #80CBC4; */
+  --wm-color-secondary: #FB8C00;
+  --wm-color-accent: #B39DDB;
+  --wm-color-info: #2196F3;
+  --wm-color-error: #FF5252;
+  --wm-color-success: #4CAF50;
+  --wm-color-warning: #FFC107;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-app-bar-bg: var(--wm-color-primary);
+    --color-nav-drawer-bg: #ffffff;
+    --color-footer: #F5F5F5;
+
+    --color-background: #fafafa;
+    --color-container-bg: #ffffff;
+    --color-primary: var(--wm-color-primary);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-app-bar-bg: var(--wm-color-primary);
+    --color-nav-drawer-bg: #262727;
+    --color-footer: #272727;
+
+    --color-background: #000000;
+    --color-container-bg: #2A2C2C;
+    --color-primary: var(--wm-color-primary);
+  }
+}
+
+/* 默认样式 */
+.theme--dark.v-app-bar.v-toolbar.v-sheet {
+  background-color: var(--color-primary);
+}
+.v-navigation-drawer__content {
+  background-color: var(--color-nav-drawer-bg);
+}
+.theme--light.v-footer {
+  background-color: var(--color-footer);
+}
+.v-main__wrap {
+  background-color: var(--color-background);
+}
+.container {
+  background-color: var(--color-container-bg);
+}
+body {
+  min-height: 100vh;
+  color: var(--color-primary);
+  background: var(--color-background);
+  transition: color 0.5s, background-color 0.5s;
+}
+
+/* .v-btn {
+  text-transform: none;
+} */

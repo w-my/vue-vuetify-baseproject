@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app clipped-left dark color="bc-primary">
+    <v-app-bar class="app-bar" app clipped-left dark>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Topics</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -9,7 +9,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer app clipped dark v-model="drawer" color="#000000dd">
+    <v-navigation-drawer app clipped v-model="drawer">
       <v-list nav dense>
         <v-list-item two-line>
           <v-list-item-avatar>
@@ -20,12 +20,13 @@
             <v-list-item-subtitle>Subtext</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-
-        <v-divider></v-divider>
-
-        <div v-for="item in items" :key="item.title">
+      </v-list>
+      <v-divider></v-divider>
+      <v-list nav dense>
+        <v-list-item-group active-class="list-item-group" v-for="item in items" :key="item.title">
           <template v-if="item.items">
-            <v-list-group color="#80CBC4" v-model="item.active" no-action>
+            <!-- <v-list-group v-model="item.active" no-action> -->
+            <v-list-group no-action >
               <template v-slot:activator>
                 <v-list-item-icon>
                   <v-icon>{{ item.icon }}</v-icon>
@@ -43,7 +44,7 @@
             </v-list-group>
           </template>
           <template v-else>
-            <v-list-item color="#80CBC4" :to="item.path">
+            <v-list-item :to="item.path">
               <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
@@ -52,12 +53,12 @@
               </v-list-item-content>
             </v-list-item>
           </template>
-        </div>
+        </v-list-item-group>
       </v-list>
 
     </v-navigation-drawer>
 
-    <v-main class="main">
+    <v-main class="container">
       <v-container fluid>
         <router-view></router-view>
       </v-container>
@@ -95,13 +96,13 @@ export default {
 
   },
   methods: {
-    
+
   },
 };
 </script>
 
-<style scoped>
-.main {
-  background-color: #f0f0f0;
+<style scpoed>
+.list-item-group {
+  color: var(--color-primary) !important;
 }
 </style>
